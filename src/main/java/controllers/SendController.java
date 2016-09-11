@@ -1,10 +1,8 @@
 package controllers;
 
-import com.mongodb.MongoClientURI;
+import com.mongodb.*;
 import models.Send;
-import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.Block;
 import com.mongodb.client.FindIterable;
 import org.bson.Document;
 
@@ -23,15 +21,18 @@ public class SendController extends BaseController {
     MongoDatabase db = mongoClient.getDatabase("arteiro");
 
     protected void test(String text){
-        sendModel.sendMessage("eita",adminId);
-        FindIterable<Document> iterable = db.getCollection("artistas").find(new Document("name", "Samuel"));
 
+        BasicDBObject whereQuery = new BasicDBObject();
+        whereQuery.put("name", "Samuel");
+        FindIterable<Document> iterable = db.getCollection("artistas").find(whereQuery);
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
-                sendModel.sendMessage(document.getString("name"),adminId);
-                sendModel.sendMessage("eita",adminId);
+                sendModel.sendMessage( document.getString("name") , adminId);
             }
         });
+
+
+
     }
 }
