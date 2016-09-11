@@ -28,7 +28,7 @@ public class SendController extends BaseController {
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
-                sendModel.sendMessage( document.getString("name") , adminId);
+                sendModel.sendMessage( document.toString() , adminId);
             }
         });
 
