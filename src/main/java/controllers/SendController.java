@@ -22,9 +22,8 @@ public class SendController extends BaseController {
 
     protected void test(String text){
 
-        BasicDBObject whereQuery = new BasicDBObject();
-        whereQuery.put("name", "Samuel");
-        FindIterable<Document> iterable = db.getCollection("artistas").find(whereQuery);
+       
+        FindIterable<Document> iterable = db.getCollection("artistas").find();
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
