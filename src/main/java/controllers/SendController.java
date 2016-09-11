@@ -23,6 +23,7 @@ public class SendController extends BaseController {
     MongoDatabase db = mongoClient.getDatabase("arteiro");
 
     protected void test(String text){
+        sendModel.sendMessage("eita",adminId);
         FindIterable<Document> iterable = db.getCollection("artistas").find(new Document("name", "Samuel"));
 
         iterable.forEach(new Block<Document>() {
