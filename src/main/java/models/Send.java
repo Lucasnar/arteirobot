@@ -12,7 +12,7 @@ import com.pengrad.telegrambot.response.*;
  * Created by Samuel on 10/09/2016.
  */
 public class Send extends BaseModel{
-    TelegramBot bot = TelegramBotAdapter.build("235548784:AAHkS-f8J4D4LTM527TldPFHRKt0DL1ykB4");
+    TelegramBot bot = TelegramBotAdapter.build("225486233:AAGSX_ghHrtXdtlXeyEjyWUKCaTlqb5P4y8");
     Update update;
     InlineQuery inlineQuery;
     Message msg;
