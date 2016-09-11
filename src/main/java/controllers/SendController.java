@@ -1,5 +1,6 @@
 package controllers;
 
+import com.mongodb.MongoClientURI;
 import models.Send;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
@@ -17,7 +18,8 @@ import static java.util.Arrays.asList;
 public class SendController extends BaseController {
     String adminId = "153878723";
     Send sendModel = new Send();
-    MongoClient mongoClient = new MongoClient("mongodb://arteiro:abacate@ds019846.mlab.com:19846/arteiro",19846);
+    MongoClientURI uri  = new MongoClientURI("mongodb://arteiro:abacate@ds019846.mlab.com:19846/arteiro");
+    MongoClient mongoClient = new MongoClient(uri);
     MongoDatabase db = mongoClient.getDatabase("arteiro");
 
     protected void test(String text){
