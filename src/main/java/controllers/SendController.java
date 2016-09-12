@@ -22,16 +22,23 @@ public class SendController extends BaseController {
 
     protected void test(String text){
 
-       
-        FindIterable<Document> iterable = db.getCollection("artistas").find();
+//        FindIterable<Document> iterable = db.getCollection("artistas").find();
+//        iterable.forEach(new Block<Document>() {
+//            @Override
+//            public void apply(final Document document) {
+//                sendModel.sendMessage( document.toString() , adminId);
+//            }
+//        });
+
+        FindIterable<Document> iterable = db.getCollection("restaurants").find(
+                new Document("name", "Samuel"));
+
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
-                sendModel.sendMessage( document.toString() , adminId);
+                sendModel.sendMessage(document.toString(), adminId);
             }
         });
-
-
 
     }
 }
