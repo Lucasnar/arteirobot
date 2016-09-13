@@ -26,7 +26,7 @@ public class MainServer  extends BaseController{
         });
 
         get("/testMessage", (req, res) -> {
-            send.test("test message");
+            send.test("Samuel Stabler");
             return "The message was sent for Admin Group";
         });
 

@@ -31,7 +31,7 @@ public class SendController extends BaseController {
 //        });
 
         FindIterable<Document> iterable = db.getCollection("artistas").find(
-                new Document("name", "Samuel"));
+                new Document("name", text));
 
         iterable.forEach(new Block<Document>() {
             @Override
