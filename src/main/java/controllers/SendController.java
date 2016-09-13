@@ -30,7 +30,7 @@ public class SendController extends BaseController {
 //            }
 //        });
 
-        FindIterable<Document> iterable = db.getCollection("restaurants").find(
+        FindIterable<Document> iterable = db.getCollection("artistas").find(
                 new Document("name", "Samuel"));
 
         iterable.forEach(new Block<Document>() {
