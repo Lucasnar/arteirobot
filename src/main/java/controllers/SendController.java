@@ -16,7 +16,7 @@ import static java.util.Arrays.asList;
 public class SendController extends BaseController {
     String adminId = "153878723"; 
 	// Lucas' chat id 136505761
-	////chatid samuel = 153878723
+	////chatid samuel = 153878723 
     Send sendModel = new Send();
     MongoClientURI uri  = new MongoClientURI("mongodb://arteiro:abacate@ds019846.mlab.com:19846/arteiro");
     MongoClient mongoClient = new MongoClient(uri);
