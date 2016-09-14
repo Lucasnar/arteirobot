@@ -25,10 +25,11 @@ public class MainServer  extends BaseController{
             return "www.telegram.me/arteirobot";
         });
 
-        get("/testMessage", (req, res) -> {
-            send.test("Samuel Stabler");
+        get("/testMessage/:name", (req, res) -> {
+            send.test(req.params(":name"));
             return "The message was sent for Admin Group";
         });
+
 
 
     }
