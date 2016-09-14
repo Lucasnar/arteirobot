@@ -24,14 +24,11 @@ public class SendController extends BaseController {
 
     protected void test(String text){
 
-//        FindIterable<Document> iterable = db.getCollection("artistas").find();
-//        iterable.forEach(new Block<Document>() {
-//            @Override
-//            public void apply(final Document document) {
-//                sendModel.sendMessage( document.toString() , adminId);
-//            }
-//        });
-
+			DBObject searchCommand = new BasicDBObject(
+				"$text", new BasicDBObject("$search", "\"name\" " + text)
+			).append(
+				"score", new BasicDBObject("'$meta'", "name")
+			);
         FindIterable<Document> iterable = db.getCollection("artistas").find(
                 new Document("name", text));
 
