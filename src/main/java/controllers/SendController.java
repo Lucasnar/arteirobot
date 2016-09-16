@@ -24,13 +24,7 @@ public class SendController extends BaseController {
 
     protected void test(String text){
 
-			DBObject searchCommand = new BasicDBObject(
-				"$text", new BasicDBObject("$search", "\"name\" " + text)
-			).append(
-				"score", new BasicDBObject("'$meta'", "name")
-			);
-        FindIterable<Document> iterable = db.getCollection("artistas").find(
-                new Document("name", text));
+        FindIterable<Document> iterable = db.getCollection("artistas").find(new BasicDBObject("$text", new BasicDBObject("$search", text)));
 
         iterable.forEach(new Block<Document>() {
             @Override
