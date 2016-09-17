@@ -29,8 +29,13 @@ public class Model {
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
-                //popular artistas aqui
-                //sendModel.sendMessage(document.toString(), adminId);
+                artistas.add(new Artist(
+                                            document.getString("name"),
+                                            document.getString("country"),
+                                            document.getString("work"),
+                                            document.getString("profile")
+                                            )
+                );
             }
         });
 
