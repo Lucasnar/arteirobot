@@ -26,7 +26,7 @@ public class MainServer {
         });
 
         get("/testMessage", (req, res) -> {
-            controller.testMessage("Ola, isso é um teste");
+            controller.testMessage("Hello, Barney <3");
 
             return "The message was sent for Admin Group.";
         });
