@@ -1,4 +1,4 @@
-package bot;
+﻿package bot;
 
 import static spark.Spark.*;
 
@@ -26,7 +26,7 @@ public class MainServer {
         });
 
         get("/testMessage", (req, res) -> {
-            controller.testMessage("Ola, isso � um teste");
+            controller.testMessage("Ola, isso é um teste");
 
             return "The message was sent for Admin Group.";
         });
