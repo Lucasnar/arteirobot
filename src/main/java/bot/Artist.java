@@ -1,4 +1,4 @@
-package bot;
+ï»¿package bot;
 
 public class Artist {
 
@@ -47,6 +47,6 @@ public class Artist {
 		this.location = location;
 	}
 	public String mountArtist(){
-		return this.getNome() + "\n Localização: " + this.getLocation() + "\n Saiba Mais: " + this.getLink();
+		return this.getNome() + "\n LocalizaÃ§Ã£o: " + this.getLocation() + "\n Saiba Mais: " + this.getLink();
 	}
 }
