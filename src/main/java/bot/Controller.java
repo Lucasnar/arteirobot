@@ -36,16 +36,26 @@ public class Controller {
     protected void read(byte[] bodyRequest){
         try {
             bot.setUpdate(new String(bodyRequest, "UTF-8"));
-            if(bot.getTypeChatCommon() == true){
-                bot.sendMessage("Hello, you sent me: " + bot.getMessage(),bot.getChatId());
-            } else {
-                bot.sendMessage("Hello, you using inline!",bot.getChatId());
+            if(bot.getTypeChatCommon() == true) {
+                ArrayList<Artist> artistas;
+                artistas = model.searchArtistName(bot.getMessage());
+                for (int i = 0; i < artistas.size(); i++) {
+                    try {
+                        bot.sendPhoto(bot.getChatId(), artistas.get(i).getArte(), artistas.get(i).mountArtist());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }else{
+                bot.sendMessage("Hello, you using inline!", bot.getChatId());
+
             }
+
         } catch(Exception e){
-            // Admin notification
-            bot.sendMessage(e.getMessage() + "\n" + e.getStackTrace(),"-145562622");
-        }
+        // Admin notification
+        bot.sendMessage(e.getMessage() + "\n" + e.getStackTrace(),"-145562622");
     }
+}
 
 
 }
