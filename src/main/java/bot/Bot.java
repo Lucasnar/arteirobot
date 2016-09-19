@@ -30,6 +30,7 @@ public class Bot {
     InlineQuery inlineQuery;
     Message msg;
     Chat chat;
+    boolean typeChatCommon;
 
 
 
@@ -52,31 +53,31 @@ public class Bot {
         bot.sendPhoto(chat, InputFileBytes.photo(imageInByte), caption, null, new ReplyKeyboardHide());
     }
 
-//    protected void setUpdate(String response){
-//        update = BotUtils.parseUpdate(response);
-//        checkChat(response);
-//
-//    }
+    protected void setUpdate(String response){
+        update = BotUtils.parseUpdate(response);
+        checkChat(response);
 
-//    private void checkChat(String response){
-//        if(response.indexOf("chat") != -1){
-//            msg = update.message();
-//            chat = msg.chat();
-//            typeChatCommon = true;
-//        } else {
-//            typeChatCommon = false;
-//            inlineQuery = update.inlineQuery();
-//        }
-//    }
-//
-//    protected  boolean getTypeChatCommon(){
-//        return typeChatCommon;
-//    }
-//    protected String getChatId(){
-//        return Long.toString(chat.id());
-//    }
-//
-//    protected String getMessage(){
-//        return msg.text();
-//    }
+    }
+
+    private void checkChat(String response){
+        if(response.indexOf("chat") != -1){
+            msg = update.message();
+            chat = msg.chat();
+            typeChatCommon = true;
+        } else {
+            typeChatCommon = false;
+            inlineQuery = update.inlineQuery();
+        }
+    }
+
+    protected  boolean getTypeChatCommon(){
+        return typeChatCommon;
+    }
+    protected String getChatId(){
+        return Long.toString(chat.id());
+    }
+
+    protected String getMessage(){
+        return msg.text();
+    }
 }

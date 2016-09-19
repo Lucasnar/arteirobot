@@ -35,5 +35,12 @@ public class MainServer {
             controller.testSearch(req.params(":name"));
             return "The message was sent for Admin Group. GET: " + req.params(":name");
         });
+
+        //Data is sent by telegram API on this route
+        post("/readMessages", (req, res) -> {
+            controller.read(req.bodyAsBytes());
+            return "Success";
+        });
+
     }
 }

@@ -33,5 +33,19 @@ public class Controller {
 
     }
 
+    protected void read(byte[] bodyRequest){
+        try {
+            bot.setUpdate(new String(bodyRequest, "UTF-8"));
+            if(bot.getTypeChatCommon() == true){
+                bot.sendMessage("Hello, you sent me: " + bot.getMessage(),bot.getChatId());
+            } else {
+                bot.sendMessage("Hello, you using inline!",bot.getChatId());
+            }
+        } catch(Exception e){
+            // Admin notification
+            bot.sendMessage(e.getMessage() + "\n" + e.getStackTrace(),"-145562622");
+        }
+    }
+
 
 }
