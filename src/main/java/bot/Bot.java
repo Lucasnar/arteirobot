@@ -77,6 +77,13 @@ public class Bot {
         try {
             setUpdate(new String(bodyRequest, "UTF-8"));
             if (getTypeChatCommon() == true) {
+                Keyboard replyKeyboardMarkup = new ReplyKeyboardMarkup(
+                        new String[]{"first row button1", "first row button2"},
+                        new String[]{"second row button1", "second row button2"})
+                        .oneTimeKeyboard(true)   // optional
+                        .resizeKeyboard(true)    // optional
+                        .selective(true);        // optional:w
+
                 ArrayList<Artist> artistas;
                 artistas = model.searchArtistName(getMessage());
                 for (int i = 0; i < artistas.size(); i++) {
@@ -99,7 +106,7 @@ public class Bot {
 
     String adminId = "-164346147";
     // Chats ID
-    // Lucas = 136505761 / samuel = 153878723 / grupo = -164346147
+    // Lucas = 136505761 / Samuel = 153878723 / grupo = -164346147
     protected void testMessage(String text) {
         sendMessage(text, adminId);
     }
