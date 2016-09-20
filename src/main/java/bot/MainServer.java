@@ -2,23 +2,14 @@ package bot;
 
 import static spark.Spark.*;
 
-import java.io.IOException;
 import java.util.*;
 
 public class MainServer {
-
-    Bot bot;
-    MainServer(){
-        bot = new Bot();
-
-    }
-
     public static void main(String[] args) {
-
 
         // Get port config of heroku on environment variable
         ProcessBuilder process = new ProcessBuilder();
-        Controller controller = new Controller();
+        Bot bot = new Bot();
         int myPort;
         if (process.environment().get("PORT") != null) {
             myPort = Integer.parseInt(process.environment().get("PORT"));
@@ -35,19 +26,19 @@ public class MainServer {
         });
 
         get("/testMessage", (req, res) -> {
-            controller.testMessage("Hello, Barney <3");
+            bot.testMessage("Hello, Barney <3");
 
             return "The message was sent for Admin Group.";
         });
 
         get("/testSearch/:name", (req, res) -> {
-            controller.testSearch(req.params(":name"));
+            bot.testSearch(req.params(":name"));
             return "The message was sent for Admin Group. GET: " + req.params(":name");
         });
 
         //Data is sent by telegram API on this route
         post("/readMessages", (req, res) -> {
-            controller.read(req.bodyAsBytes());
+            bot.read(req.bodyAsBytes());
             return "Success";
         });
 

@@ -24,60 +24,20 @@ import java.io.*;
 /**
  * Created by Aluno on 16/09/2016.
  */
+
 public class Bot {
     TelegramBot bot = TelegramBotAdapter.build("225486233:AAGSX_ghHrtXdtlXeyEjyWUKCaTlqb5P4y8");
-    Model model = new Model("mongodb://arteiro:abacate@ds019846.mlab.com:19846/arteiro");
-
     Update update;
-    String adminId = "-164346147";
     InlineQuery inlineQuery;
     Message msg;
     Chat chat;
+    Model model;
     boolean typeChatCommon;
 
-
-
-    protected void testMessage(String text) {
-        bot.sendMessage(text, adminId);
+    Bot(){
+        model = new Model("mongodb://arteiro:abacate@ds019846.mlab.com:19846/arteiro");
     }
 
-    protected void testSearch(String artistName){
-        ArrayList< Artist > artistas;
-        artistas = model.searchArtistName(artistName);
-        for (int i = 0; i < artistas.size(); i++) {
-            try {
-                bot.sendPhoto(adminId, artistas.get(i).getArte() ,  artistas.get(i).mountArtist());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-    }
-
-    protected void read(byte[] bodyRequest){
-        try {
-            bot.setUpdate(new String(bodyRequest, "UTF-8"));
-            if(bot.getTypeChatCommon() == true) {
-                ArrayList<Artist> artistas;
-                artistas = model.searchArtistName(bot.getMessage());
-                for (int i = 0; i < artistas.size(); i++) {
-                    try {
-                        bot.sendPhoto(bot.getChatId(), artistas.get(i).getArte(), artistas.get(i).mountArtist());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }else{
-                bot.sendMessage("Hello, you using inline!", bot.getChatId());
-
-            }
-
-        } catch(Exception e){
-            // Admin notification
-            bot.sendMessage(e.getMessage() + "\n" + e.getStackTrace(),"-145562622");
-        }
-    }
     public void sendMessage(String text , String chatId){
         bot.execute(
                 new SendMessage(chatId, text)
@@ -111,6 +71,51 @@ public class Bot {
             typeChatCommon = false;
             inlineQuery = update.inlineQuery();
         }
+    }
+
+    protected void read(byte[] bodyRequest) {
+        try {
+            setUpdate(new String(bodyRequest, "UTF-8"));
+            if (getTypeChatCommon() == true) {
+                ArrayList<Artist> artistas;
+                artistas = model.searchArtistName(getMessage());
+                for (int i = 0; i < artistas.size(); i++) {
+                    try {
+                        sendPhoto(getChatId(), artistas.get(i).getArte(), artistas.get(i).mountArtist());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else {
+                sendMessage("Hello, you are using inline!", getChatId());
+
+            }
+
+        } catch (Exception e) {
+            // Admin notification
+            sendMessage(e.getMessage() + "\n" + e.getStackTrace(), "-145562622");
+        }
+    }
+
+    String adminId = "-164346147";
+    // Chats ID
+    // Lucas = 136505761 / samuel = 153878723 / grupo = -164346147
+    protected void testMessage(String text) {
+        sendMessage(text, adminId);
+    }
+
+    protected void testSearch(String artistName){
+        ArrayList< Artist > artistas;
+        artistas = model.searchArtistName(artistName);
+        for (int i = 0; i < artistas.size(); i++) {
+            try {
+            sendPhoto(adminId, artistas.get(i).getArte() ,  artistas.get(i).mountArtist());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
     }
 
     protected  boolean getTypeChatCommon(){
