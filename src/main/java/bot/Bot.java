@@ -82,12 +82,13 @@ public class Bot {
                 ArrayList<Artist> artistas;
 
                 SendResponse sendResponse = bot.execute(
-                        new SendMessage(chat, "kkkkkkk").replyMarkup(new ReplyKeyboardMarkup( new KeyboardButton[]{
+                        new SendMessage(getChatId(), "Oi, eu sou o Dolinho, o seu amiguinho.").replyMarkup(new ReplyKeyboardMarkup( new KeyboardButton[]{
                                 new KeyboardButton("text"),
                                 new KeyboardButton("contact").requestContact(true),
                                 new KeyboardButton("location").requestLocation(true)
                         }))
                 );
+
                 artistas = model.searchArtistName(getMessage());
                 for (int i = 0; i < artistas.size(); i++) {
                     try {
