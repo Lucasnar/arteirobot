@@ -80,15 +80,6 @@ public class Bot {
             setUpdate(new String(bodyRequest, "UTF-8"));
             if (getTypeChatCommon() == true) {
                 ArrayList<Artist> artistas;
-
-                SendResponse sendResponse = bot.execute(
-                        new SendMessage(getChatId(), "Oi, eu sou o Dolinho, o seu amiguinho.").replyMarkup(new ReplyKeyboardMarkup( new KeyboardButton[]{
-                                new KeyboardButton("text"),
-                                new KeyboardButton("contact").requestContact(true),
-                                new KeyboardButton("location").requestLocation(true)
-                        }))
-                );
-
                 artistas = model.searchArtistName(getMessage());
                 for (int i = 0; i < artistas.size(); i++) {
                     try {
@@ -97,6 +88,12 @@ public class Bot {
                         e.printStackTrace();
                     }
                 }
+                SendResponse sendResponse = bot.execute(
+                        new SendMessage(getChatId(), "Escolha uma das alternativas abaixo:").replyMarkup(new ReplyKeyboardMarkup( new KeyboardButton[]{
+                                new KeyboardButton("Buscar por nome ou pais"),
+                                new KeyboardButton("Mostrar um aleatorio"),
+                        }))
+                );
             } else {
                 sendMessage("Hello, you are using inline!", getChatId());
 
