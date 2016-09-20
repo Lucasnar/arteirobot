@@ -62,37 +62,52 @@ public class Bot {
 
     }
 
+    private boolean isCommonChat(String response){
+        if(response.indexOf("chat") != -1) {
+            typeChatCommon = true;
+            return true;
+        }
+        typeChatCommon = false;
+        return false;
+    }
+
     private void checkChat(String response){
-        if(response.indexOf("chat") != -1){
+        if(isCommonChat(response)){
             msg = update.message();
             chat = msg.chat();
-            typeChatCommon = true;
         } else {
-            typeChatCommon = false;
             inlineQuery = update.inlineQuery();
         }
     }
-
-
 
     protected void read(byte[] bodyRequest) {
         try {
             setUpdate(new String(bodyRequest, "UTF-8"));
             if (getTypeChatCommon() == true) {
-                ArrayList<Artist> artistas;
-                artistas = model.searchArtistName(getMessage());
-                for (int i = 0; i < artistas.size(); i++) {
+                ArrayList<Artist> artists;
+                artists = model.searchArtistName(getMessage());
+                for (int i = 0, artistsSize = artists.size(); i < artistsSize; i++) {
                     try {
-                        sendPhoto(getChatId(), artistas.get(i).getArte(), artistas.get(i).mountArtist());
+                        sendPhoto(getChatId(), artists.get(i).getArte(), artists.get(i).mountArtist());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
-                SendResponse sendResponse = bot.execute(
-                        new SendMessage(getChatId(), "Escolha uma das alternativas abaixo:").replyMarkup(new ReplyKeyboardMarkup( new KeyboardButton[]{
-                                new KeyboardButton("Buscar por nome ou pais"),
-                                new KeyboardButton("Mostrar um aleatorio"),
-                        }))
+                KeyboardButton searchArtistByNameOrLocationButton = new KeyboardButton("Search artist by artist name or location");
+                KeyboardButton showRandomArtistButton = new KeyboardButton("Show random artist");
+                KeyboardButton[]  searchArtistAndShowRandom = new KeyboardButton[2];
+                searchArtistAndShowRandom[0] = searchArtistByNameOrLocationButton;
+                searchArtistAndShowRandom[1] = showRandomArtistButton;
+                ReplyKeyboardMarkup searchArtists = new ReplyKeyboardMarkup(searchArtistAndShowRandom);
+
+                //SendResponse sendResponse = bot.execute(
+//                        new SendMessage(getChatId(), "Please choose one:").replyMarkup(new ReplyKeyboardMarkup( new KeyboardButton[]{
+//                                new KeyboardButton("Search for artist name or location"),
+//                                new KeyboardButton("Show random artist"),
+//                        }))
+//                );
+                bot.execute(
+                        new SendMessage(getChatId(), "Please choose one:").replyMarkup(searchArtists)
                 );
             } else {
                 sendMessage("Hello, you are using inline!", getChatId());
