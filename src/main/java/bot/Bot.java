@@ -73,18 +73,21 @@ public class Bot {
         }
     }
 
+
+
     protected void read(byte[] bodyRequest) {
         try {
             setUpdate(new String(bodyRequest, "UTF-8"));
             if (getTypeChatCommon() == true) {
-                Keyboard replyKeyboardMarkup = new ReplyKeyboardMarkup(
-                        new String[]{"first row button1", "first row button2"},
-                        new String[]{"second row button1", "second row button2"})
-                        .oneTimeKeyboard(true)   // optional
-                        .resizeKeyboard(true)    // optional
-                        .selective(true);        // optional:w
-
                 ArrayList<Artist> artistas;
+
+                SendResponse sendResponse = bot.execute(
+                        new SendMessage(chat, "kkkkkkk").replyMarkup(new ReplyKeyboardMarkup( new KeyboardButton[]{
+                                new KeyboardButton("text"),
+                                new KeyboardButton("contact").requestContact(true),
+                                new KeyboardButton("location").requestLocation(true)
+                        }))
+                );
                 artistas = model.searchArtistName(getMessage());
                 for (int i = 0; i < artistas.size(); i++) {
                     try {
