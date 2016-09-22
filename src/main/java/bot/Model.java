@@ -19,7 +19,6 @@ public class Model {
     MongoClientURI uri;
     MongoClient mongoClient;
     MongoDatabase db;
-    DB db2;
     MongoCollection<Document> artistsCollection;
 
     Model(){
@@ -52,32 +51,26 @@ public class Model {
 
     // TODO: Is there a way to make it faster? Gets all 7000 artists only to return one.
     protected Artist showRandomArtist(){
-//        Random rand = new Random();
-//        int randomNum = rand.nextInt(7001);
-//        final Artist[] artist = new Artist[1];
+        Random rand = new Random();
+        int randomNum = rand.nextInt(7001);
+        final Artist[] artist = new Artist[1];
 
-        DBCollection artistsCollection2 = db2.getCollection("artistas");
-        DBObject artistDocument = artistsCollection2.findOne();
-        Artist artist = new Artist(artistDocument.get("name").toString(), artistDocument.get("country").toString(),
-                artistDocument.get("work").toString(), artistDocument.get("profile").toString());
-//
-//        FindIterable<Document> documents = artistsCollection.find();
-//
-//        documents.forEach(new Block<Document>() {
-//            int counter = 1;
-//            @Override
-//            public void apply(final Document document) {
-//                if(counter == randomNum){
-//                    artist[0] = new Artist(document.getString("name"),
-//                            document.getString("country"),
-//                            document.getString("work"),
-//                            document.getString("profile"));
-//                }
-//                ++counter;
-//            }
-//        });
+        FindIterable<Document> documents = artistsCollection.find();
 
-//        return artist[0];
-        return artist;
+        documents.forEach(new Block<Document>() {
+            int counter = 1;
+            @Override
+            public void apply(final Document document) {
+                if(counter == randomNum){
+                    artist[0] = new Artist(document.getString("name"),
+                            document.getString("country"),
+                            document.getString("work"),
+                            document.getString("profile"));
+                }
+                ++counter;
+            }
+        });
+
+        return artist[0];
     }
 }

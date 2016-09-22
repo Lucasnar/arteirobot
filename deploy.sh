@@ -1,7 +1,8 @@
+COMMIT_MESSAGE="$1"
 git add .
-if [ -z "$1" ]
+if [ -z "$COMMIT_MESSAGE" ]
 then
-    git commit -m "$1"
+    git commit -m "$COMMIT_MESSAGE"
 else
     git commit -m "Automagic commit."
 fi
