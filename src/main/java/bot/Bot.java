@@ -88,7 +88,7 @@ public class Bot {
                 String message = getMessage();
                 sendMessage(message, getChatId());
 
-                if(message == "random") {
+                if(message.contentEquals("random")) {
                     Artist artist = model.showRandomArtist();
                     sendMessage("Showing random artist test", getChatId());
                     sendPhoto(getChatId(), artist.getArte(), artist.mountArtist());
