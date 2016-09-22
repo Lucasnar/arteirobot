@@ -129,7 +129,6 @@ public class Bot {
                             e.printStackTrace();
                         }
                     }
-
                 }
 
                 //showKeyboard();
@@ -143,7 +142,6 @@ public class Bot {
             sendMessage(e.getMessage() + "\n" + e.getStackTrace(), "-145562622");
         }
     }
-
 
     protected  boolean getTypeChatCommon(){
         return typeChatCommon;
