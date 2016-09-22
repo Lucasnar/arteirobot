@@ -85,14 +85,18 @@ public class Bot {
         try {
             setUpdate(new String(bodyRequest, "UTF-8"));
             if (getTypeChatCommon()) {
-                if(getMessage().contains("random")) {
+                String message = getMessage();
+                sendMessage(message, getChatId());
+
+                if(message == "random") {
                     Artist artist = model.showRandomArtist();
                     sendMessage("Showing random artist test", getChatId());
                     sendPhoto(getChatId(), artist.getArte(), artist.mountArtist());
                 }
+
                 else {
                     ArrayList<Artist> artists;
-                    artists = model.searchArtistName(getMessage());
+                    artists = model.searchArtistName(message);
                     for (Artist artist : artists) {
                         try {
                             sendPhoto(getChatId(), artist.getArte(), artist.mountArtist());
