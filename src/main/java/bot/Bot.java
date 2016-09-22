@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import java.io.*;
+import java.util.Objects;
 
 /**
  * Created by Aluno on 16/09/2016.
@@ -63,7 +64,7 @@ public class Bot {
     }
 
     private boolean isCommonChat(String response){
-        if(response.indexOf("chat") != -1) {
+        if(response.contains("chat")) {
             typeChatCommon = true;
             return true;
         }
@@ -83,32 +84,40 @@ public class Bot {
     protected void read(byte[] bodyRequest) {
         try {
             setUpdate(new String(bodyRequest, "UTF-8"));
-            if (getTypeChatCommon() == true) {
-                ArrayList<Artist> artists;
-                artists = model.searchArtistName(getMessage());
-                for (int i = 0, artistsSize = artists.size(); i < artistsSize; i++) {
-                    try {
-                        sendPhoto(getChatId(), artists.get(i).getArte(), artists.get(i).mountArtist());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+            if (getTypeChatCommon()) {
+                if(Objects.equals(getMessage(), "Show random artist")) {
+                    Artist artist = model.showRandomArtist();
+                    sendPhoto(getChatId(), artist.getArte(), artist.mountArtist());
                 }
-                KeyboardButton searchArtistByNameOrLocationButton = new KeyboardButton("Search artist by artist name or location");
-                KeyboardButton showRandomArtistButton = new KeyboardButton("Show random artist");
-                KeyboardButton[]  searchArtistAndShowRandom = new KeyboardButton[2];
-                searchArtistAndShowRandom[0] = searchArtistByNameOrLocationButton;
-                searchArtistAndShowRandom[1] = showRandomArtistButton;
-                ReplyKeyboardMarkup searchArtists = new ReplyKeyboardMarkup(searchArtistAndShowRandom);
+                else {
+                    ArrayList<Artist> artists;
+                    artists = model.searchArtistName(getMessage());
+                    for (Artist artist : artists) {
+                        try {
+                            sendPhoto(getChatId(), artist.getArte(), artist.mountArtist());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    KeyboardButton searchArtistByNameOrLocationButton =
+                            new KeyboardButton("Search artist by artist name or location");
+                    KeyboardButton showRandomArtistButton = new KeyboardButton("Show random artist");
+                    KeyboardButton[] searchArtistAndShowRandom = new KeyboardButton[2];
+                    searchArtistAndShowRandom[0] = searchArtistByNameOrLocationButton;
+                    searchArtistAndShowRandom[1] = showRandomArtistButton;
+                    ReplyKeyboardMarkup searchArtists = new ReplyKeyboardMarkup(searchArtistAndShowRandom);
 
-                //SendResponse sendResponse = bot.execute(
+                    //SendResponse sendResponse = bot.execute(
 //                        new SendMessage(getChatId(), "Please choose one:").replyMarkup(new ReplyKeyboardMarkup( new KeyboardButton[]{
 //                                new KeyboardButton("Search for artist name or location"),
 //                                new KeyboardButton("Show random artist"),
 //                        }))
 //                );
-                bot.execute(
-                        new SendMessage(getChatId(), "Please choose one:").replyMarkup(searchArtists)
-                );
+
+                    bot.execute(
+                            new SendMessage(getChatId(), "Please choose one:").replyMarkup(searchArtists)
+                    );
+                }
             } else {
                 sendMessage("Hello, you are using inline!", getChatId());
 

@@ -23,9 +23,10 @@ public class Model {
     }
     protected ArrayList<Artist> searchArtistName(String artistName){
         ArrayList< Artist > artistas = new ArrayList< Artist >();
-        BasicDBObject query = new BasicDBObject();
-        query.put("name", "samuel");
-        FindIterable<Document> iterable = db.getCollection("artistas").find(new BasicDBObject("$text", new BasicDBObject("$search", artistName))).limit(5);
+        //BasicDBObject query = new BasicDBObject();
+        //query.put("name", "samuel");
+        FindIterable<Document> iterable = db.getCollection("artistas")
+                .find(new BasicDBObject("$text", new BasicDBObject("$search", artistName))).limit(5);
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
@@ -40,5 +41,18 @@ public class Model {
         });
 
         return artistas;
+    }
+
+    protected Artist showRandomArtist(){
+        BasicDBObject query = new BasicDBObject();
+        //query.put("name", "samuel");
+        DBCollection artistsCollection = (DBCollection) db.getCollection("artistas");
+        Document artistDocument = (Document) artistsCollection.findOne();
+        Artist artist = new Artist(artistDocument.getString("name"),
+                artistDocument.getString("country"),
+                artistDocument.getString("work"),
+                artistDocument.getString("profile"));
+
+        return artist;
     }
 }
