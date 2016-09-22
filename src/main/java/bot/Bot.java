@@ -44,7 +44,7 @@ public class Bot {
                 new SendMessage(chatId, text)
         );
    }
-    public void sendPhoto(String chat, String photoLink,String caption) throws IOException  {
+    public void sendPhoto(String chat, String photoLink, Artist artist) throws IOException  {
         Image image = null;
         URL url = new URL(photoLink);
         image = ImageIO.read(url);
@@ -54,8 +54,13 @@ public class Bot {
         baos.flush();
         byte[] imageInByte = baos.toByteArray();
 
+        InlineKeyboardMarkup inlineKeyboard = new InlineKeyboardMarkup(
+                new InlineKeyboardButton[]{
+                        new InlineKeyboardButton("More from " + artist.getNome()).url(artist.getLink())
+                });
+
         bot.execute(
-          new SendPhoto(chat, imageInByte).caption(caption)
+          new SendPhoto(chat, imageInByte).caption(artist.mountArtist()).replyMarkup(inlineKeyboard)
         );
     }
 
@@ -112,7 +117,7 @@ public class Bot {
 
                 if(message.contentEquals("random")) {
                     Artist artist = model.showRandomArtist();
-                    sendPhoto(getChatId(), artist.getArte(), artist.mountArtist());
+                    sendPhoto(getChatId(), artist.getArte(), artist);
                 }
 
                 else {
@@ -120,7 +125,7 @@ public class Bot {
                     artists = model.searchArtistName(message);
                     for (Artist artist : artists) {
                         try {
-                            sendPhoto(getChatId(), artist.getArte(), artist.mountArtist());
+                            sendPhoto(getChatId(), artist.getArte(), artist);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

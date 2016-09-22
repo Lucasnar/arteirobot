@@ -33,10 +33,6 @@ public class Artist {
 	public void setArte(String arte) {
 		this.arte = arte;
 	}
-    public String getAll(){
-        return "Nome: " + this.nome + "\nLocalizacao: " + this.location + "\nLink: " + this.link;
-    }
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -47,6 +43,6 @@ public class Artist {
 		this.location = location;
 	}
 	public String mountArtist(){
-		return this.getNome() + "\n Localizacao: " + this.getLocation() + "\n Saiba Mais: " + this.getLink();
+		return this.getNome() + "\n Location: " + this.getLocation();
 	}
 }
