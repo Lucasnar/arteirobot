@@ -50,11 +50,11 @@
       <file leaf-file-name="Bot.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/bot/Bot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="89" column="55" selection-start-line="89" selection-start-column="55" selection-end-line="89" selection-end-column="55" />
+            <state relative-caret-position="208">
+              <caret line="87" column="40" selection-start-line="87" selection-start-column="40" selection-end-line="87" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1474546495852" expanded="true" signature="5501:5507" ph="{...}" />
+                <marker date="1474546593324" expanded="true" signature="5492:5498" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -853,7 +853,7 @@
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1474546495852" expanded="true" signature="5501:5507" ph="{...}" />
+            <marker date="1474546593324" expanded="true" signature="5492:5498" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1023,7 +1023,7 @@
           <caret line="83" column="34" selection-start-line="83" selection-start-column="34" selection-end-line="83" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1474546495852" expanded="true" signature="5501:5507" ph="{...}" />
+            <marker date="1474546593324" expanded="true" signature="5492:5498" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1064,7 +1064,7 @@
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1474546495852" expanded="true" signature="5501:5507" ph="{...}" />
+            <marker date="1474546593324" expanded="true" signature="5492:5498" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1251,11 +1251,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bot/Bot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="89" column="55" selection-start-line="89" selection-start-column="55" selection-end-line="89" selection-end-column="55" />
+        <state relative-caret-position="208">
+          <caret line="87" column="40" selection-start-line="87" selection-start-column="40" selection-end-line="87" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1474546495852" expanded="true" signature="5501:5507" ph="{...}" />
+            <marker date="1474546593324" expanded="true" signature="5492:5498" ph="{...}" />
           </folding>
         </state>
       </provider>
