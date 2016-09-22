@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a7f17834-03df-4a0b-8349-28b33b82b962" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bot/Bot.java" afterPath="$PROJECT_DIR$/src/main/java/bot/Bot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bot/MainServer.java" afterPath="$PROJECT_DIR$/src/main/java/bot/MainServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bot/Model.java" afterPath="$PROJECT_DIR$/src/main/java/bot/Model.java" />
     </list>
     <ignored path="arteiro.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,14 +50,14 @@
       <file leaf-file-name="Bot.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/bot/Bot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="95" column="22" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="22" />
+            <state relative-caret-position="468">
+              <caret line="57" column="57" selection-start-line="57" selection-start-column="57" selection-end-line="57" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1081#1082#0" expanded="true" />
                 <element signature="e#1116#1117#0" expanded="true" />
-                <element signature="e#4703#4704#0" expanded="true" />
-                <element signature="e#4736#4737#0" expanded="true" />
+                <element signature="e#4720#4721#0" expanded="true" />
+                <element signature="e#4753#4754#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -856,8 +854,8 @@
             <element signature="imports" expanded="true" />
             <element signature="e#1081#1082#0" expanded="true" />
             <element signature="e#1116#1117#0" expanded="true" />
-            <element signature="e#4703#4704#0" expanded="true" />
-            <element signature="e#4736#4737#0" expanded="true" />
+            <element signature="e#4720#4721#0" expanded="true" />
+            <element signature="e#4753#4754#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1019,8 +1017,8 @@
             <element signature="imports" expanded="true" />
             <element signature="e#1081#1082#0" expanded="true" />
             <element signature="e#1116#1117#0" expanded="true" />
-            <element signature="e#4703#4704#0" expanded="true" />
-            <element signature="e#4736#4737#0" expanded="true" />
+            <element signature="e#4720#4721#0" expanded="true" />
+            <element signature="e#4753#4754#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1061,8 +1059,8 @@
             <element signature="imports" expanded="true" />
             <element signature="e#1081#1082#0" expanded="true" />
             <element signature="e#1116#1117#0" expanded="true" />
-            <element signature="e#4703#4704#0" expanded="true" />
-            <element signature="e#4736#4737#0" expanded="true" />
+            <element signature="e#4720#4721#0" expanded="true" />
+            <element signature="e#4753#4754#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1237,14 +1235,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bot/Bot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="95" column="22" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="22" />
+        <state relative-caret-position="468">
+          <caret line="57" column="57" selection-start-line="57" selection-start-column="57" selection-end-line="57" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1081#1082#0" expanded="true" />
             <element signature="e#1116#1117#0" expanded="true" />
-            <element signature="e#4703#4704#0" expanded="true" />
-            <element signature="e#4736#4737#0" expanded="true" />
+            <element signature="e#4720#4721#0" expanded="true" />
+            <element signature="e#4753#4754#0" expanded="true" />
           </folding>
         </state>
       </provider>

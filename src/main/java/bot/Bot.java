@@ -55,7 +55,7 @@ public class Bot {
         byte[] imageInByte = baos.toByteArray();
 
         bot.execute(
-          new SendPhoto(chat, imageInByte)
+          new SendPhoto(chat, imageInByte).caption(caption)
         );
     }
 
