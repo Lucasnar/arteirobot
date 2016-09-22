@@ -91,9 +91,17 @@ public class Bot {
         searchArtistAndShowRandom[1] = showRandomArtistButton;
         ReplyKeyboardMarkup searchArtists = new ReplyKeyboardMarkup(searchArtistAndShowRandom);
 
+        InlineKeyboardMarkup inlineKeyboard = new InlineKeyboardMarkup(
+                new InlineKeyboardButton[]{
+                        new InlineKeyboardButton("url").url("url"),
+                        new InlineKeyboardButton("callback_data").callbackData("callback_data"),
+                        new InlineKeyboardButton("switch_inline_query").switchInlineQuery("switch_inline_query")
+                });
+
         bot.execute(
-                new SendMessage(getChatId(), "Please choose one:").replyMarkup(searchArtists)
-        );
+                new SendMessage(getChatId(), "Please choose one:").replyMarkup(inlineKeyboard)
+
+                );
     }
 
     protected void read(byte[] bodyRequest) {
