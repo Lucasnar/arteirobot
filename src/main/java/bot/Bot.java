@@ -132,7 +132,7 @@ public class Bot {
                     }
 
                 }
-                showKeyboard();
+                //showKeyboard();
             } else {
                 sendMessage("Hello, you are using inline!", getChatId());
 
