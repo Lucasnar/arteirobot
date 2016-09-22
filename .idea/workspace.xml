@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7f17834-03df-4a0b-8349-28b33b82b962" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bot/Bot.java" afterPath="$PROJECT_DIR$/src/main/java/bot/Bot.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bot/Model.java" afterPath="$PROJECT_DIR$/src/main/java/bot/Model.java" />
     </list>
     <ignored path="arteiro.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Bot.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Bot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bot/Bot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="91" column="58" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
+            <state relative-caret-position="156">
+              <caret line="92" column="58" selection-start-line="92" selection-start-column="58" selection-end-line="92" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5772#5773#0" expanded="true" />
@@ -62,14 +62,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/bot/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+            <state relative-caret-position="301">
+              <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#739#749#0" expanded="true" />
+                <element signature="e#964#974#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -367,8 +367,8 @@
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/bot/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/bot/MainServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bot/Model.java" />
         <option value="$PROJECT_DIR$/src/main/java/bot/Bot.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bot/Model.java" />
       </list>
     </option>
   </component>
@@ -868,7 +868,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#739#749#0" expanded="true" />
+            <element signature="e#964#974#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1040,7 +1040,7 @@
           <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#739#749#0" expanded="true" />
+            <element signature="e#964#974#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1083,7 +1083,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#739#749#0" expanded="true" />
+            <element signature="e#964#974#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1246,26 +1246,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bot/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#739#749#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bot/Bot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="91" column="58" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
+        <state relative-caret-position="156">
+          <caret line="92" column="58" selection-start-line="92" selection-start-column="58" selection-end-line="92" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5772#5773#0" expanded="true" />
             <element signature="e#5805#5806#0" expanded="true" />
             <marker date="1474548384509" expanded="true" signature="5568:5574" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bot/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#964#974#0" expanded="true" />
           </folding>
         </state>
       </provider>
