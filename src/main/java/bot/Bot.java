@@ -85,9 +85,9 @@ public class Bot {
         try {
             setUpdate(new String(bodyRequest, "UTF-8"));
             if (getTypeChatCommon()) {
-                if(getMessage().equals("Show random artist")) {
+                if(getMessage().equals("random")) {
                     Artist artist = model.showRandomArtist();
-                    sendMessage("Show random artist test", getChatId());
+                    sendMessage("Showing random artist test", getChatId());
                     sendPhoto(getChatId(), artist.getArte(), artist.mountArtist());
                 }
                 else {
@@ -102,7 +102,7 @@ public class Bot {
                     }
                     KeyboardButton searchArtistByNameOrLocationButton =
                             new KeyboardButton("Search artist by artist name or location");
-                    KeyboardButton showRandomArtistButton = new KeyboardButton("Show random artist");
+                    KeyboardButton showRandomArtistButton = new KeyboardButton("random");
                     KeyboardButton[] searchArtistAndShowRandom = new KeyboardButton[2];
                     searchArtistAndShowRandom[0] = searchArtistByNameOrLocationButton;
                     searchArtistAndShowRandom[1] = showRandomArtistButton;
