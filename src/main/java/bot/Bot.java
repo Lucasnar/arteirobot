@@ -81,15 +81,28 @@ public class Bot {
         }
     }
 
+    protected void showKeyboard(){
+
+        KeyboardButton searchArtistByNameOrLocationButton =
+                new KeyboardButton("Search artist by artist name or location");
+        KeyboardButton showRandomArtistButton = new KeyboardButton("random");
+        KeyboardButton[] searchArtistAndShowRandom = new KeyboardButton[2];
+        searchArtistAndShowRandom[0] = searchArtistByNameOrLocationButton;
+        searchArtistAndShowRandom[1] = showRandomArtistButton;
+        ReplyKeyboardMarkup searchArtists = new ReplyKeyboardMarkup(searchArtistAndShowRandom);
+
+        bot.execute(
+                new SendMessage(getChatId(), "Please choose one:").replyMarkup(searchArtists)
+        );
+    }
+
     protected void read(byte[] bodyRequest) {
         try {
             setUpdate(new String(bodyRequest, "UTF-8"));
             if (getTypeChatCommon()) {
                 String message = getMessage();
-                sendMessage(message, getChatId());
 
                 if(message.contentEquals("random")) {
-                    sendMessage("Showing random artist test", getChatId());
                     Artist artist = model.showRandomArtist();
                     sendPhoto(getChatId(), artist.getArte(), artist.mountArtist());
                 }
@@ -104,25 +117,9 @@ public class Bot {
                             e.printStackTrace();
                         }
                     }
-                    KeyboardButton searchArtistByNameOrLocationButton =
-                            new KeyboardButton("Search artist by artist name or location");
-                    KeyboardButton showRandomArtistButton = new KeyboardButton("random");
-                    KeyboardButton[] searchArtistAndShowRandom = new KeyboardButton[2];
-                    searchArtistAndShowRandom[0] = searchArtistByNameOrLocationButton;
-                    searchArtistAndShowRandom[1] = showRandomArtistButton;
-                    ReplyKeyboardMarkup searchArtists = new ReplyKeyboardMarkup(searchArtistAndShowRandom);
 
-                    //SendResponse sendResponse = bot.execute(
-//                        new SendMessage(getChatId(), "Please choose one:").replyMarkup(new ReplyKeyboardMarkup( new KeyboardButton[]{
-//                                new KeyboardButton("Search for artist name or location"),
-//                                new KeyboardButton("Show random artist"),
-//                        }))
-//                );
-
-                    bot.execute(
-                            new SendMessage(getChatId(), "Please choose one:").replyMarkup(searchArtists)
-                    );
                 }
+                showKeyboard();
             } else {
                 sendMessage("Hello, you are using inline!", getChatId());
 
