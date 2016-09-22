@@ -1,3 +1,3 @@
 git add .
-git commit -m "Automagic commit"
+git commit -m "$1"
 git push heroku master

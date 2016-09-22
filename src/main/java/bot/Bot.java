@@ -67,7 +67,6 @@ public class Bot {
     protected void setUpdate(String response){
         update = BotUtils.parseUpdate(response);
         checkChat(response);
-
     }
 
     private boolean isCommonChat(String response){
@@ -105,7 +104,6 @@ public class Bot {
 
         bot.execute(
                 new SendMessage(getChatId(), "Please choose one:").replyMarkup(inlineKeyboard)
-
                 );
     }
 
@@ -113,6 +111,7 @@ public class Bot {
         try {
             setUpdate(new String(bodyRequest, "UTF-8"));
             if (getTypeChatCommon()) {
+
                 String message = getMessage();
 
                 if(message.contentEquals("random")) {
@@ -132,10 +131,11 @@ public class Bot {
                     }
 
                 }
+
                 //showKeyboard();
+
             } else {
                 sendMessage("Hello, you are using inline!", getChatId());
-
             }
 
         } catch (Exception e) {
