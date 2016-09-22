@@ -1,6 +1,6 @@
 COMMIT_MESSAGE="$1"
 git add .
-if [ -z $COMMIT_MESSAGE ]
+if [ $COMMIT_MESSAGE != "" ]
 then
     git commit -m $COMMIT_MESSAGE
 else
