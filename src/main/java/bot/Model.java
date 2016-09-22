@@ -59,7 +59,7 @@ public class Model {
         DBCollection artistsCollection2 = db2.getCollection("artistas");
         DBObject artistDocument = artistsCollection2.findOne();
         Artist artist = new Artist(artistDocument.get("name").toString(), artistDocument.get("country").toString(),
-                (String) artistDocument.get("work").toString(), (String) artistDocument.get("profile").toString());
+                artistDocument.get("work").toString(), artistDocument.get("profile").toString());
 //
 //        FindIterable<Document> documents = artistsCollection.find();
 //

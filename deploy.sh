@@ -1,5 +1,5 @@
 git add .
-if [ -z "$1"]
+if [ -z "$1" ]
 then
     git commit -m "$1"
 else
