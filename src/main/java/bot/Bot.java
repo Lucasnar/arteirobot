@@ -36,15 +36,15 @@ public class Bot {
     boolean typeChatCommon;
 
     Bot(){
-        model = new Model("mongodb://arteiro:abacate@ds019846.mlab.com:19846/arteiro");
+        model = new Model();
     }
 
     public void sendMessage(String text , String chatId){
         bot.execute(
                 new SendMessage(chatId, text)
         );
-    }
-    protected void sendPhoto(String chat, String photoLink,String caption) throws IOException  {
+   }
+    public void sendPhoto(String chat, String photoLink,String caption) throws IOException  {
         Image image = null;
         URL url = new URL(photoLink);
         image = ImageIO.read(url);
@@ -54,7 +54,9 @@ public class Bot {
         baos.flush();
         byte[] imageInByte = baos.toByteArray();
 
-        bot.sendPhoto(chat, InputFileBytes.photo(imageInByte), caption, null, new ReplyKeyboardHide());
+        bot.execute(
+          new SendPhoto(chat, imageInByte)
+        );
     }
 
     protected void setUpdate(String response){
@@ -137,26 +139,6 @@ public class Bot {
         }
     }
 
-    String adminId = "-164346147";
-    // Chats ID
-    // Lucas = 136505761 / Samuel = 153878723 / grupo = -164346147
-    protected void testMessage(String text) {
-        sendMessage(text, adminId);
-    }
-
-    protected void testSearch(String artistName){
-        ArrayList< Artist > artistas;
-        artistas = model.searchArtistName(artistName);
-        for (int i = 0; i < artistas.size(); i++) {
-            try {
-            sendPhoto(adminId, artistas.get(i).getArte() ,  artistas.get(i).mountArtist());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-    }
 
     protected  boolean getTypeChatCommon(){
         return typeChatCommon;

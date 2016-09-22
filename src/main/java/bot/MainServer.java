@@ -18,24 +18,6 @@ public class MainServer {
         }
         port(myPort);
 
-        //Delivery static file
-        staticFileLocation("/static");
-
-        get("/", (req, res) -> {
-            return "www.telegram.me/arteirobot";
-        });
-
-        get("/testMessage", (req, res) -> {
-            bot.testMessage("Hello, Barney <3");
-
-            return "The message was sent for Admin Group.";
-        });
-
-        get("/testSearch/:name", (req, res) -> {
-            bot.testSearch(req.params(":name"));
-            return "The message was sent for Admin Group. GET: " + req.params(":name");
-        });
-
         //Data is sent by telegram API on this route
         post("/readMessages", (req, res) -> {
             bot.read(req.bodyAsBytes());

@@ -20,8 +20,8 @@ public class Model {
     MongoClient mongoClient;
     MongoDatabase db;
     MongoCollection<Document> artistsCollection;
-    Model(String url){
-        uri  = new MongoClientURI(url);
+    Model(){
+        uri  = new MongoClientURI("mongodb://arteiro:abacate@ds019846.mlab.com:19846/arteiro");
         mongoClient = new MongoClient(uri);
         db = mongoClient.getDatabase("arteiro");
         artistsCollection = db.getCollection("artistas");
