@@ -132,8 +132,8 @@ public class Bot {
 
         ReplyKeyboardMarkup searchArtistsKeyboard = new ReplyKeyboardMarkup(
                new KeyboardButton[] {
-                       new KeyboardButton("Show random artist"),
-                       new KeyboardButton("Search artists by name or location")
+                       new KeyboardButton("Search artists by name or location"),
+                       new KeyboardButton("Show random artist")
                }
         );
 
