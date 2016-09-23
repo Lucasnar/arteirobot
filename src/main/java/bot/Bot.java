@@ -90,20 +90,15 @@ public class Bot {
     protected void showKeyboard(){
 
         KeyboardButton searchArtistByNameOrLocationButton =
-                new KeyboardButton("Search artist by artist name or location");
-        KeyboardButton showRandomArtistButton = new KeyboardButton("random");
-        KeyboardButton[] searchArtistAndShowRandom = new KeyboardButton[2];
-        searchArtistAndShowRandom[0] = searchArtistByNameOrLocationButton;
-        searchArtistAndShowRandom[1] = showRandomArtistButton;
-        ReplyKeyboardMarkup searchArtists = new ReplyKeyboardMarkup(searchArtistAndShowRandom);
-
-        InlineKeyboardMarkup inlineKeyboard = new InlineKeyboardMarkup(
-                new InlineKeyboardButton[]{
-                        new InlineKeyboardButton("url").url("http://www.google.com")
-                });
+                new KeyboardButton("Search artists by name or location");
+        KeyboardButton showRandomArtistButton = new KeyboardButton("Show random artist");
+        KeyboardButton[] searchArtistAndShowRandomButtons = new KeyboardButton[2];
+        searchArtistAndShowRandomButtons[0] = searchArtistByNameOrLocationButton;
+        searchArtistAndShowRandomButtons[1] = showRandomArtistButton;
+        ReplyKeyboardMarkup searchArtistsKeyboard = new ReplyKeyboardMarkup(searchArtistAndShowRandomButtons);
 
         bot.execute(
-                new SendMessage(getChatId(), "Please choose one:").replyMarkup(inlineKeyboard)
+                new SendMessage(getChatId(), "What do you want to do?").replyMarkup(searchArtistsKeyboard)
                 );
     }
 
@@ -114,7 +109,7 @@ public class Bot {
 
                 String message = getMessage();
 
-                if(message.contentEquals("random")) {
+                if(message.contentEquals("Show random artist")) {
                     Artist artist = model.showRandomArtist();
                     sendPhoto(getChatId(), artist.getArte(), artist);
                 }
@@ -131,7 +126,7 @@ public class Bot {
                     }
                 }
 
-                //showKeyboard();
+                showKeyboard();
 
             } else {
                 sendMessage("Hello, you are using inline!", getChatId());
