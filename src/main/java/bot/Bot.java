@@ -33,7 +33,6 @@ public class Bot {
     Message msg;
     Chat chat;
     Model model;
-    boolean typeChatCommon;
 
     Bot(){
         model = new Model();
@@ -60,7 +59,7 @@ public class Bot {
                 });
 
         bot.execute(
-          new SendPhoto(chat, imageInByte).caption(artist.mountArtist()).replyMarkup(inlineKeyboard)
+                new SendPhoto(chat, imageInByte).caption(artist.mountArtist()).replyMarkup(inlineKeyboard)
         );
     }
 
@@ -115,6 +114,7 @@ public class Bot {
             }
         }
     }
+
     private boolean isCommonChat(String response){
         return response.contains("chat");
     }
