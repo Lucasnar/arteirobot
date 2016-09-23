@@ -66,69 +66,30 @@ public class Bot {
 
     protected void setUpdate(String response){
         update = BotUtils.parseUpdate(response);
-        checkChat(response);
     }
 
-    private boolean isCommonChat(String response){
-        if(response.contains("chat")) {
-            typeChatCommon = true;
-            return true;
-        }
-        typeChatCommon = false;
-        return false;
-    }
-
-    private void checkChat(String response){
-        if(isCommonChat(response)){
-            msg = update.message();
-            chat = msg.chat();
-        } else {
-            inlineQuery = update.inlineQuery();
-        }
-    }
-
-    protected void showKeyboard(){
-
-        KeyboardButton searchArtistByNameOrLocationButton =
-                new KeyboardButton("Search artists by name or location");
-        KeyboardButton showRandomArtistButton = new KeyboardButton("Show random artist");
-        KeyboardButton[] searchArtistAndShowRandomButtons = new KeyboardButton[2];
-        searchArtistAndShowRandomButtons[0] = searchArtistByNameOrLocationButton;
-        searchArtistAndShowRandomButtons[1] = showRandomArtistButton;
-        ReplyKeyboardMarkup searchArtistsKeyboard = new ReplyKeyboardMarkup(searchArtistAndShowRandomButtons);
-
-        bot.execute(
-                new SendMessage(getChatId(), "What do you want to do?").replyMarkup(searchArtistsKeyboard)
-                );
-    }
 
     protected void read(byte[] bodyRequest) {
         try {
-            setUpdate(new String(bodyRequest, "UTF-8"));
-            if (getTypeChatCommon()) {
+            String response = new String(bodyRequest, "UTF-8");
+            setUpdate(response);
+
+            if (isCommonChat(response)) {
+                setCommonChat();
 
                 String message = getMessage();
 
                 if(message.contentEquals("Show random artist")) {
-                    Artist artist = model.showRandomArtist();
-                    sendPhoto(getChatId(), artist.getArte(), artist);
+                    showRandomArtist();
                 }
-
                 else {
-                    ArrayList<Artist> artists;
-                    artists = model.searchArtistName(message);
-                    for (Artist artist : artists) {
-                        try {
-                            sendPhoto(getChatId(), artist.getArte(), artist);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
+                    searchArtistName(message);
                 }
 
                 showKeyboard();
 
             } else {
+                setInlineQuery();
                 sendMessage("Hello, you are using inline!", getChatId());
             }
 
@@ -138,9 +99,49 @@ public class Bot {
         }
     }
 
-    protected  boolean getTypeChatCommon(){
-        return typeChatCommon;
+    private void showRandomArtist() throws IOException {
+        Artist artist = model.showRandomArtist();
+        sendPhoto(getChatId(), artist.getArte(), artist);
     }
+
+    private void searchArtistName(String message) {
+        ArrayList<Artist> artists;
+        artists = model.searchArtistName(message);
+        for (Artist artist : artists) {
+            try {
+                sendPhoto(getChatId(), artist.getArte(), artist);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private boolean isCommonChat(String response){
+        return response.contains("chat");
+    }
+
+    private void setInlineQuery(){
+        inlineQuery = update.inlineQuery();
+    }
+
+    private void setCommonChat() {
+        msg = update.message();
+        chat = msg.chat();
+    }
+
+    private void showKeyboard(){
+
+        ReplyKeyboardMarkup searchArtistsKeyboard = new ReplyKeyboardMarkup(
+               new KeyboardButton[] {
+                       new KeyboardButton("Show random artist"),
+                       new KeyboardButton("Search artists by name or location")
+               }
+        );
+
+        bot.execute(
+                new SendMessage(getChatId(), "What do you want to do?").replyMarkup(searchArtistsKeyboard)
+                );
+    }
+
     protected String getChatId(){
         return Long.toString(chat.id());
     }
