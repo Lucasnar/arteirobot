@@ -125,7 +125,9 @@ public class Bot {
                 ++i;
             }
 
+            sendMessage("got out of the loop i = " + String.valueOf(i), getChatId());
             bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
+            sendMessage("after bot execute i = " + String.valueOf(i), getChatId());
         } else {
             InlineQueryResult result = new InlineQueryResultArticle("0",
                     "No artists found.", "No results for the query.");
