@@ -46,6 +46,9 @@ public class Model {
             }
         });
 
+        if(artistas.size() == 0)
+            return null;
+
         return artistas;
     }
 

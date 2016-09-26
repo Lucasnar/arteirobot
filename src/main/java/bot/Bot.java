@@ -71,25 +71,35 @@ public class Bot {
     protected void read(byte[] bodyRequest) {
         try {
             String response = new String(bodyRequest, "UTF-8");
+            String message = getMessage();
             setUpdate(response);
 
             if (isCommonChat(response)) {
                 setCommonChat();
 
-                String message = getMessage();
-
                 if(message.contentEquals("Show random artist")) {
                     showRandomArtist();
-                }
-                else {
+                    showKeyboard();
+                } else if(message.contentEquals("Search artists by name")) {
+                    sendMessage("Please type an artist name to search for", getChatId());
+                } else {
                     searchArtistName(message);
+                    showKeyboard();
                 }
-
-                showKeyboard();
 
             } else {
                 setInlineQuery();
                 sendMessage("Hello, you are using inline!", getChatId());
+                InlineQueryResultArticle[] resultArticles = new InlineQueryResultArticle[5];
+                ArrayList<Artist> artists = getArtistsByName(message);
+
+                for(int i = 0; i<5; ++i){
+                    Artist artist = artists.get(i);
+                    resultArticles[i] = new InlineQueryResultArticle(getChatId(),
+                            artist.getNome(), artist.getLocation()).thumbUrl(artist.getLink());
+                }
+
+                bot.execute(new AnswerInlineQuery(inlineQuery.id(), resultArticles));
             }
 
         } catch (Exception e) {
@@ -103,9 +113,13 @@ public class Bot {
         sendPhoto(getChatId(), artist.getArte(), artist);
     }
 
-    private void searchArtistName(String message) {
-        ArrayList<Artist> artists;
-        artists = model.searchArtistName(message);
+    private ArrayList<Artist> getArtistsByName(String name){
+        ArrayList<Artist> artists = model.searchArtistName(name);
+        return artists;
+    }
+
+    private void searchArtistName(String name) {
+        ArrayList<Artist> artists = getArtistsByName(name);
         for (Artist artist : artists) {
             try {
                 sendPhoto(getChatId(), artist.getArte(), artist);
@@ -132,7 +146,7 @@ public class Bot {
 
         ReplyKeyboardMarkup searchArtistsKeyboard = new ReplyKeyboardMarkup(
                new KeyboardButton[] {
-                       new KeyboardButton("Search artists by name or location"),
+                       new KeyboardButton("Search artists by name"),
                        new KeyboardButton("Show random artist")
                }
         );
