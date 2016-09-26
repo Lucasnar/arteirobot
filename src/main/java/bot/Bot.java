@@ -91,17 +91,17 @@ public class Bot {
                 setInlineQuery();
                 String message = getMessage();
 
-                sendMessage("Hello, you are using inline!", getChatId());
-                InlineQueryResultArticle[] resultArticles = new InlineQueryResultArticle[5];
+                InlineQueryResult[] result= new InlineQueryResultArticle[5];
                 ArrayList<Artist> artists = getArtistsByName(message);
 
                 for(int i = 0; i<5; ++i){
                     Artist artist = artists.get(i);
-                    resultArticles[i] = new InlineQueryResultArticle(getChatId(),
+                    result[i] = new InlineQueryResultArticle(getChatId(),
                             artist.getNome(), artist.getLocation()).thumbUrl(artist.getLink());
                 }
 
-                bot.execute(new AnswerInlineQuery(inlineQuery.id(), resultArticles));
+                sendMessage("Hello, you are using inline!", getChatId());
+                bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
             }
 
         } catch (Exception e) {
