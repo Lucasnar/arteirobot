@@ -89,7 +89,7 @@ public class Bot {
 
             } else {
                 setInlineQuery();
-                String message = getMessage();
+                String message = inlineQuery.query();
 
                 InlineQueryResult[] result= new InlineQueryResultArticle[5];
                 ArrayList<Artist> artists = getArtistsByName(message);
@@ -97,7 +97,7 @@ public class Bot {
                 for(int i = 0; i<5; ++i){
                     Artist artist = artists.get(i);
                     result[i] = new InlineQueryResultArticle(String.valueOf(i),
-                            artist.getNome(), artist.getLocation()).thumbUrl(artist.getLink());
+                            artist.getNome(), artist.getLocation()).url(artist.getLink());
                 }
 
                 sendMessage("Hello, you are using inline!", getChatId());
@@ -106,7 +106,7 @@ public class Bot {
 
         } catch (Exception e) {
             // Admin notification
-            sendMessage(e.getMessage() + "\n" + e.getStackTrace(), "-145562622");
+            sendMessage(e.getMessage() + "\n" + e.getStackTrace(), getChatId()); // "-145562622"
         }
     }
 
