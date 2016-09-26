@@ -116,13 +116,12 @@ public class Bot {
         ArrayList<Artist> artists = getArtistsByName(name);
 
         if(artists.size() != 0) {
-            InlineQueryResult[] result = new InlineQueryResultArticle[5];
+            InlineQueryResult[] result = new InlineQueryResultArticle[artists.size()];
             int i = 0;
             for (Artist artist : artists) {
                 sendMessage("here i = " + String.valueOf(i), getChatId());
-                result[i] = new InlineQueryResultArticle(String.valueOf(i),
+                result[i++] = new InlineQueryResultArticle(String.valueOf(i),
                         artist.getNome(), artist.getNome()).thumbUrl(artist.getArte());
-                ++i;
             }
 
             sendMessage("got out of the loop i = " + String.valueOf(i), getChatId());
