@@ -33,8 +33,8 @@ public class Model {
         //FindIterable<Document> iterable = artistsCollection
                 //.find(new BasicDBObject("$text", new BasicDBObject("$search", artistName))).limit(5);
 
-        //Bot bot = new Bot();
-        //bot.sendMessage("o nome do artista a pesquisar eh " + artistName, );
+        Bot bot = new Bot();
+        bot.sendMessage("o nome do artista a pesquisar eh " + artistName, "136505761");
 
         FindIterable< Document > iterable = artistsCollection
                 .find(new Document("$text", new Document("$search", "/" + artistName + "/"))).limit(5);
