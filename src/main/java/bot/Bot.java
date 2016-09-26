@@ -93,22 +93,28 @@ public class Bot {
                 setInlineQuery();
                 String message = inlineQuery.query();
 
-                InlineQueryResult[] result = new InlineQueryResultArticle[5];
                 ArrayList<Artist> artists = getArtistsByName(message);
 
-                for(int i = 0; i<5; ++i){
-                    Artist artist = artists.get(i);
-                    result[i] = new InlineQueryResultArticle(String.valueOf(i),
-                            artist.getNome(), artist.getNome()).thumbUrl(artist.getArte());
+                if(artists.size() > 0) {
+                    InlineQueryResult[] result = new InlineQueryResultArticle[5];
+                    for (int i = 0; i < 5; ++i) {
+                        Artist artist = artists.get(i);
+                        result[i] = new InlineQueryResultArticle(String.valueOf(i),
+                                artist.getNome(), artist.getNome()).thumbUrl(artist.getArte());
+                    }
+
+                    bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
+                } else{
+                    InlineQueryResult result = new InlineQueryResultArticle("0",
+                            "No artists found.", "No results for the query.");
+                    bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
                 }
 
-                sendMessage("Hello, you are using inline!", getChatId());
-                bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
             }
 
         } catch (Exception e) {
             // Admin notification
-            sendMessage(e.getMessage() + "\n" + e.getStackTrace(), getChatId()); // "-145562622"
+            sendMessage(e.getMessage() + "\n" + e.getStackTrace(), "136505761"); // Antigo "-145562622"
         }
     }
 
@@ -133,9 +139,13 @@ public class Bot {
                 }
             }
         } else{
-            sendMessage("No artists found.", getChatId());
+            noArtistsFound();
         }
 
+    }
+
+    private void noArtistsFound(){
+        sendMessage("No artists found.", getChatId());
     }
 
     private boolean isCommonChat(String response){
