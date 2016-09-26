@@ -34,7 +34,7 @@ public class Model {
                 //.find(new BasicDBObject("$text", new BasicDBObject("$search", artistName))).limit(5);
 
         FindIterable< Document > iterable = artistsCollection
-                .find(new Document("name", "/" + artistName + "/")).limit(5);
+                .find(new Document("name", new Document("$regex", "/" + artistName + "/"))).limit(5);
 
         iterable.forEach(new Block<Document>() {
             @Override
