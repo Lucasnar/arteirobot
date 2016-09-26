@@ -43,6 +43,6 @@ public class Artist {
 		this.location = location;
 	}
 	public String mountArtist(){
-		return this.getNome() + "\n Location: " + this.getLocation();
+		return this.getNome() + "\nLocation: " + this.getLocation();
 	}
 }

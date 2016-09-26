@@ -97,7 +97,7 @@ public class Bot {
                 for(int i = 0; i<5; ++i){
                     Artist artist = artists.get(i);
                     result[i] = new InlineQueryResultArticle(String.valueOf(i),
-                            artist.getNome(), artist.getLocation()).url(artist.getLink());
+                            artist.getNome(), artist.getNome()).thumbUrl(artist.getArte());
                 }
 
                 sendMessage("Hello, you are using inline!", getChatId());
