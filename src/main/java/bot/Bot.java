@@ -104,11 +104,12 @@ public class Bot {
                     }
 
                     bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
-                } else{
+                } /*else{
                     InlineQueryResult result = new InlineQueryResultArticle("0",
                             "No artists found.", "No results for the query.");
                     bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
                 }
+                    */
 
             }
 
