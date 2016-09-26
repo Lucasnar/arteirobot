@@ -30,11 +30,11 @@ public class Model {
 
     protected ArrayList<Artist> searchArtistName(String artistName){
         ArrayList< Artist > artistas = new ArrayList< Artist >();
-        //FindIterable<Document> iterable = artistsCollection
-                //.find(new BasicDBObject("$text", new BasicDBObject("$search", artistName))).limit(5);
+        FindIterable<Document> iterable = artistsCollection
+                .find(new BasicDBObject("$text", new BasicDBObject("$search", artistName))).limit(5);
 
-        FindIterable< Document > iterable = artistsCollection
-                .find(new Document("name", new Document("$regex", "/" + artistName + "/"))).limit(5);
+        //FindIterable< Document > iterable = artistsCollection
+                //.find(new Document("name", new Document("$regex", "/" + artistName + "/"))).limit(5);
 
         iterable.forEach(new Block<Document>() {
             @Override
