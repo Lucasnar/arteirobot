@@ -119,19 +119,19 @@ public class Bot {
             InlineQueryResult[] result = new InlineQueryResultArticle[artists.size()];
             int i = 0;
             for (Artist artist : artists) {
-                sendMessage("here i = " + String.valueOf(i), getChatId());
                 result[i++] = new InlineQueryResultArticle(String.valueOf(i),
                         artist.getNome(), artist.getNome()).thumbUrl(artist.getArte());
             }
 
-            sendMessage("got out of the loop i = " + String.valueOf(i), getChatId());
             bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
-            sendMessage("after bot execute i = " + String.valueOf(i), getChatId());
-        } else {
+        }
+        /*
+        else {
             InlineQueryResult result = new InlineQueryResultArticle("0",
                     "No artists found.", "No results for the query.");
             bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
         }
+        */
     }
 
     private void searchArtistName(String name) {
