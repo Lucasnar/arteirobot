@@ -91,7 +91,7 @@ public class Bot {
                 setInlineQuery();
                 String message = inlineQuery.query();
 
-                InlineQueryResult[] result= new InlineQueryResultArticle[5];
+                InlineQueryResult[] result = new InlineQueryResultArticle[5];
                 ArrayList<Artist> artists = getArtistsByName(message);
 
                 for(int i = 0; i<5; ++i){
@@ -122,13 +122,18 @@ public class Bot {
 
     private void searchArtistName(String name) {
         ArrayList<Artist> artists = getArtistsByName(name);
-        for (Artist artist : artists) {
-            try {
-                sendPhoto(getChatId(), artist.getArte(), artist);
-            } catch (IOException e) {
-                e.printStackTrace();
+        if (artists.size() != 0){
+            for (Artist artist : artists) {
+                try {
+                    sendPhoto(getChatId(), artist.getArte(), artist);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+        } else{
+            sendMessage("No artists found.", getChatId());
         }
+
     }
 
     private boolean isCommonChat(String response){
