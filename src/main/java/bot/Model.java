@@ -33,11 +33,14 @@ public class Model {
         //FindIterable<Document> iterable = artistsCollection
                 //.find(new BasicDBObject("$text", new BasicDBObject("$search", artistName))).limit(5);
 
-        Bot bot = new Bot();
-        bot.sendMessage("o nome do artista a pesquisar eh " + artistName, "136505761");
+        //Bot bot = new Bot();
+        //bot.sendMessage("searching for " + artistName + " in Model.java", "136505761");
+
+       //FindIterable< Document > iterable = artistsCollection
+                //.find(new Document("$text", new Document("$search", "/" + artistName + "/"))).limit(5);
 
         FindIterable< Document > iterable = artistsCollection
-                .find(new Document("$text", new Document("$search", "/" + artistName + "/"))).limit(5);
+                .find(new Document("name", java.util.regex.Pattern.compile(artistName))).limit(5);
 
         iterable.forEach(new Block<Document>() {
             @Override
