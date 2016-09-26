@@ -92,25 +92,7 @@ public class Bot {
             } else {
                 setInlineQuery();
                 String message = inlineQuery.query();
-
-                ArrayList<Artist> artists = getArtistsByName(message);
-
-                if(artists.size() > 0) {
-                    InlineQueryResult[] result = new InlineQueryResultArticle[5];
-                    int i = 0;
-                    for (Artist artist : artists) {
-                        result[i++] = new InlineQueryResultArticle(String.valueOf(i),
-                                artist.getNome(), artist.getNome()).thumbUrl(artist.getArte());
-                    }
-
-                    bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
-                } /*else{
-                    InlineQueryResult result = new InlineQueryResultArticle("0",
-                            "No artists found.", "No results for the query.");
-                    bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
-                }
-                    */
-
+                inlineSearch(message);
             }
 
         } catch (Exception e) {
@@ -129,6 +111,29 @@ public class Bot {
         return artists;
     }
 
+    private void inlineSearch(String name){
+
+        ArrayList<Artist> artists = getArtistsByName(name);
+
+        if(artists.size() != 0) {
+            InlineQueryResult[] result = new InlineQueryResultArticle[5];
+            int i = 0;
+            for (Artist artist : artists) {
+                result[i] = new InlineQueryResultArticle(String.valueOf(i),
+                        artist.getNome(), artist.getNome()).thumbUrl(artist.getArte());
+                ++i;
+            }
+
+            bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
+        } /*else{
+                    InlineQueryResult result = new InlineQueryResultArticle("0",
+                            "No artists found.", "No results for the query.");
+                    bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
+                }
+                    */
+
+    }
+
     private void searchArtistName(String name) {
         ArrayList<Artist> artists = getArtistsByName(name);
         if (artists.size() != 0){
@@ -140,13 +145,9 @@ public class Bot {
                 }
             }
         } else{
-            noArtistsFound();
+            sendMessage("No artists found.", getChatId());
         }
 
-    }
-
-    private void noArtistsFound(){
-        sendMessage("No artists found.", getChatId());
     }
 
     private boolean isCommonChat(String response){
