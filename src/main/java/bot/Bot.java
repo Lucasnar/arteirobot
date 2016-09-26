@@ -97,9 +97,9 @@ public class Bot {
 
                 if(artists.size() > 0) {
                     InlineQueryResult[] result = new InlineQueryResultArticle[5];
-                    for (int i = 0; i < 5; ++i) {
-                        Artist artist = artists.get(i);
-                        result[i] = new InlineQueryResultArticle(String.valueOf(i),
+                    int i = 0;
+                    for (Artist artist : artists) {
+                        result[i++] = new InlineQueryResultArticle(String.valueOf(i),
                                 artist.getNome(), artist.getNome()).thumbUrl(artist.getArte());
                     }
 
