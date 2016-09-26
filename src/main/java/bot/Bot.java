@@ -82,7 +82,9 @@ public class Bot {
                     showKeyboard();
                 } else if(message.contentEquals("Search artists by name")) {
                     sendMessage("Please type an artist name to search for", getChatId());
-                } else {
+                } else if(message.contentEquals("getChatId()"))
+                    sendMessage(getChatId(), getChatId());
+                else {
                     searchArtistName(message);
                     showKeyboard();
                 }
