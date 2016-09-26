@@ -82,7 +82,7 @@ public class Bot {
                     showKeyboard();
                 } else if(message.contentEquals("Search artists by name")) {
                     sendMessage("Please type an artist name to search for", getChatId());
-                } else if(message.contentEquals("getChatId()"))
+                } else if(message.contentEquals("getChatId()")) // If you want to know your current chatId.
                     sendMessage(getChatId(), getChatId());
                 else {
                     searchArtistName(message);
@@ -119,17 +119,18 @@ public class Bot {
             InlineQueryResult[] result = new InlineQueryResultArticle[5];
             int i = 0;
             for (Artist artist : artists) {
+                sendMessage("here i = " + String.valueOf(i), getChatId());
                 result[i] = new InlineQueryResultArticle(String.valueOf(i),
                         artist.getNome(), artist.getNome()).thumbUrl(artist.getArte());
                 ++i;
             }
 
             bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
-        } else{
-                    InlineQueryResult result = new InlineQueryResultArticle("0",
-                            "No artists found.", "No results for the query.");
-                    bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
-                }
+        } else {
+            InlineQueryResult result = new InlineQueryResultArticle("0",
+                    "No artists found.", "No results for the query.");
+            bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
+        }
     }
 
     private void searchArtistName(String name) {
