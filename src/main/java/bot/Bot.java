@@ -71,11 +71,11 @@ public class Bot {
     protected void read(byte[] bodyRequest) {
         try {
             String response = new String(bodyRequest, "UTF-8");
-            String message = getMessage();
             setUpdate(response);
 
             if (isCommonChat(response)) {
                 setCommonChat();
+                String message = getMessage();
 
                 if(message.contentEquals("Show random artist")) {
                     showRandomArtist();
@@ -89,6 +89,8 @@ public class Bot {
 
             } else {
                 setInlineQuery();
+                String message = getMessage();
+
                 sendMessage("Hello, you are using inline!", getChatId());
                 InlineQueryResultArticle[] resultArticles = new InlineQueryResultArticle[5];
                 ArrayList<Artist> artists = getArtistsByName(message);
