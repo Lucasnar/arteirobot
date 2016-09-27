@@ -183,12 +183,16 @@ public class Bot {
     private void showKeyboard(){
 
         ReplyKeyboardMarkup searchArtistsKeyboard = new ReplyKeyboardMarkup(
-               new KeyboardButton[] {
-                       new KeyboardButton("Search artists by name"),
-                       new KeyboardButton("Search artists by country"),
-                       new KeyboardButton("Show random artist")
-               }
+                new String[]{"Search artists by name"},
+                new String[]{"Search artists by country"},
+                new String[]{"Show random artist"}
         );
+
+//        ReplyKeyboardMarkup searchArtistsKeyboard = new ReplyKeyboardMarkup(
+//                new KeyboardButton("Search artists by name"),
+//                new KeyboardButton("Search artists by country"),
+//                new KeyboardButton("Show random artist")
+//        );
 
         bot.execute(
                 new SendMessage(getChatId(), "What do you want to do?").replyMarkup(searchArtistsKeyboard)
