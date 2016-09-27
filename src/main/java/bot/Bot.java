@@ -26,8 +26,8 @@ public class Bot {
     Message msg;
     Chat chat;
     Model model;
-    Boolean countrySearch;
-    Boolean nameSearch;
+    Boolean countrySearch = false;
+    Boolean nameSearch = false;
 
     Bot(){
         model = new Model();
