@@ -144,7 +144,7 @@ public class Bot {
             int i = 0;
             for (Artist artist : artists) {
                 result[i++] = new InlineQueryResultArticle(String.valueOf(i),
-                        artist.getNome(), artist.getNome()).thumbUrl(artist.getArte());
+                        artist.getNome(), artist.getLink()).thumbUrl(artist.getArte());
             }
 
             bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
