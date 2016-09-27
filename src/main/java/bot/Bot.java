@@ -147,7 +147,7 @@ public class Bot {
                         String.valueOf(i),
                         artist.getNome(),
                         artist.getLink()).thumbUrl(artist.getArte()
-                ).description("Testing");
+                ).description(artist.getLocation());
             }
 
             bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
