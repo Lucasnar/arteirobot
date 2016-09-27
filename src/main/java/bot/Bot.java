@@ -143,8 +143,11 @@ public class Bot {
             InlineQueryResult[] result = new InlineQueryResultArticle[artists.size()];
             int i = 0;
             for (Artist artist : artists) {
-                result[i++] = new InlineQueryResultArticle(String.valueOf(i),
-                        artist.getNome(), artist.getLink()).thumbUrl(artist.getArte());
+                result[i++] = new InlineQueryResultArticle(
+                        String.valueOf(i),
+                        artist.getNome(),
+                        artist.getLink()).thumbUrl(artist.getArte()
+                ).description("Testing");
             }
 
             bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
