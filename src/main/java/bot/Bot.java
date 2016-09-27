@@ -1,26 +1,19 @@
 package bot;
 import com.pengrad.telegrambot.*;
 import com.pengrad.telegrambot.model.Chat;
-import com.pengrad.telegrambot.model.ChatMember;
 import com.pengrad.telegrambot.model.InlineQuery;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.*;
 import com.pengrad.telegrambot.request.*;
-import com.pengrad.telegrambot.response.*;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import javax.imageio.ImageIO;
 import java.io.*;
-import java.util.Objects;
 
 /**
  * Created by Aluno on 16/09/2016.
@@ -33,6 +26,8 @@ public class Bot {
     Message msg;
     Chat chat;
     Model model;
+    Boolean countrySearch;
+    Boolean nameSearch;
 
     Bot(){
         model = new Model();
@@ -77,16 +72,26 @@ public class Bot {
                 setCommonChat();
                 String message = getMessage();
 
+                if (isCountrySearch()){
+                    searchArtistsByCountry(message);
+                    showKeyboard();
+                    setCountrySearch(false);
+                }
+                else if(isNameSearch()){
+                    searchArtistsByName(message);
+                    showKeyboard();
+                    setNameSearch(false);
+                }
                 if(message.contentEquals("Show random artist")) {
                     showRandomArtist();
                     showKeyboard();
                 } else if(message.contentEquals("Search artists by name")) {
-                    sendMessage("Please type an artist name to search for", getChatId());
-                } else if(message.contentEquals("getChatId()")) // If you want to know your current chatId.
-                    sendMessage(getChatId(), getChatId());
-                else {
-                    searchArtistName(message);
-                    showKeyboard();
+                    sendMessage("Please type an artist name for me to search for", getChatId());
+                    setNameSearch(true);
+                }
+                else if(message.contentEquals("Search artists by country")) {
+                    sendMessage("Please type an artist country for me to search for", getChatId());
+                    setCountrySearch(true);
                 }
 
             } else {
@@ -101,11 +106,30 @@ public class Bot {
         }
     }
 
+    private void searchArtistsByCountry(String country) {
+        ArrayList<Artist> artists = getArtistsByCountry(country);
+        if (artists.size() != 0){
+            for (Artist artist : artists) {
+                try {
+                    sendPhoto(getChatId(), artist.getArte(), artist);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else{
+            sendMessage("No artists found.", getChatId());
+        }
+    }
+
     private void showRandomArtist() throws IOException {
         Artist artist = model.showRandomArtist();
         sendPhoto(getChatId(), artist.getArte(), artist);
     }
 
+    private ArrayList<Artist> getArtistsByCountry(String country){
+        ArrayList<Artist> artists = model.searchArtistByCountry(country);
+        return artists;
+    }
     private ArrayList<Artist> getArtistsByName(String name){
         ArrayList<Artist> artists = model.searchArtistName(name);
         return artists;
@@ -125,16 +149,9 @@ public class Bot {
 
             bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
         }
-        /*
-        else {
-            InlineQueryResult result = new InlineQueryResultArticle("0",
-                    "No artists found.", "No results for the query.");
-            bot.execute(new AnswerInlineQuery(inlineQuery.id(), result));
-        }
-        */
     }
 
-    private void searchArtistName(String name) {
+    private void searchArtistsByName(String name) {
         ArrayList<Artist> artists = getArtistsByName(name);
         if (artists.size() != 0){
             for (Artist artist : artists) {
@@ -168,6 +185,7 @@ public class Bot {
         ReplyKeyboardMarkup searchArtistsKeyboard = new ReplyKeyboardMarkup(
                new KeyboardButton[] {
                        new KeyboardButton("Search artists by name"),
+                       new KeyboardButton("Search artists by country"),
                        new KeyboardButton("Show random artist")
                }
         );
@@ -183,5 +201,21 @@ public class Bot {
 
     protected String getMessage(){
         return msg.text();
+    }
+
+    public void setCountrySearch(boolean isCountrySearch) {
+        this.countrySearch = isCountrySearch;
+    }
+
+    public void setNameSearch(boolean isNameSearch) {
+        this.nameSearch = isNameSearch;
+    }
+
+    public boolean isNameSearch() {
+        return nameSearch;
+    }
+
+    public boolean isCountrySearch() {
+        return countrySearch;
     }
 }

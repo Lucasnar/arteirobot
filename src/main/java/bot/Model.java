@@ -38,16 +38,37 @@ public class Model {
             @Override
             public void apply(final Document document) {
                 artistas.add(new Artist(
-                                            document.getString("name"),
-                                            document.getString("country"),
-                                            document.getString("work"),
-                                            document.getString("profile")
-                                            )
+                        document.getString("name"),
+                        document.getString("country"),
+                        document.getString("work"),
+                        document.getString("profile")
+                )
                 );
             }
         });
 
         return artistas;
+    }
+    protected ArrayList<Artist> searchArtistByCountry(String artistLocation){
+        ArrayList< Artist > artists = new ArrayList< Artist >();
+
+        FindIterable< Document > iterable = artistsCollection
+                .find(new Document("country", java.util.regex.Pattern.compile(artistLocation))).limit(5);
+
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                artists.add(new Artist(
+                        document.getString("name"),
+                        document.getString("country"),
+                        document.getString("work"),
+                        document.getString("profile")
+                )
+                );
+            }
+        });
+
+        return artists;
     }
 
     // TODO: Is there a way to make it faster? Gets all 7000 artists only to return one.
