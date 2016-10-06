@@ -1,9 +1,12 @@
-spark-heroku
+ArteiroBOT (https://telegram.me/arteirobot)
 ============
 
-Spark Heroku skeleton
+ArteiroBOT interconnects the large collection of Artsy art works (https://www.artsy.net). 
+His intention is to facilitate access to these works providing to the user a simple way to discover art!
 
-To deploy your app
+Credits
 
-	heroku apps:create [your_app_name]
-	git push heroku master
+	Giuliano Araujo Bertoti
+	Lucas Narciso
+	Samuel Pereira M. A. da Silva
+

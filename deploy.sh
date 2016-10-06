@@ -7,3 +7,4 @@ else
     git commit -m "Automagic commit."
 fi
 git push heroku master
+git push origin master
