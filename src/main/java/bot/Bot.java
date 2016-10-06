@@ -206,7 +206,7 @@ public class Bot {
                 new String[]{"Search artists by name"},
                 new String[]{"Search artists by country"},
                 new String[]{"Show random artist"}
-        ).resizeKeyboard(true);
+        ).resizeKeyboard(true).oneTimeKeyboard(true);
 
         bot.execute(
                 new SendMessage(getChatId(), "What do you want to do?").replyMarkup(new ForceReply()).replyMarkup(searchArtistsKeyboard)
