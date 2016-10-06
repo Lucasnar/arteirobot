@@ -118,7 +118,7 @@ public class Bot {
         sendMessage("Hello! I'm glad you're here. My name is ArteiroBot, but you can call me " +
                 "Art, Artist or Bob. I can show you artists and artworks from all over the world. " +
                 "You can search an artist by name or location, or I can show you a random artist. " +
-                "To get started, chose one of the below options from the keyboard." +
+                "To get started, chose one of the below options from the keyboard. " +
                 "PS: You can also call me in another chat. Just type @arteirobot and share artists " +
                 "with your friends.", getChatId());
     }
@@ -209,7 +209,7 @@ public class Bot {
         ).resizeKeyboard(true);
 
         bot.execute(
-                new SendMessage(getChatId(), "What do you want to do?").replyMarkup(searchArtistsKeyboard).replyMarkup(new ForceReply())
+                new SendMessage(getChatId(), "What do you want to do?").replyMarkup(new ForceReply()).replyMarkup(searchArtistsKeyboard)
         );
     }
 
