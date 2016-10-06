@@ -120,7 +120,7 @@ public class Bot {
                 "You can search an artist by name or location, or I can show you a random artist. " +
                 "To get started, chose one of the below options from the keyboard. " +
                 "PS: You can also call me in another chat. Just type @arteirobot and share artists " +
-                "with your friends.", getChatId());
+                "with your friends!", getChatId());
     }
 
     private void searchArtistsByCountry(String country) {
