@@ -119,7 +119,7 @@ public class Bot {
                 "Art, Artist or Bob. I can show you artists and artworks from all over the world. " +
                 "You can search an artist by name or location, or I can show you a random artist. " +
                 "To get started, chose one of the below options from the keyboard.\n\n" +
-                "PS: You can also call me in another chat. Just type @arteirobot and share artists " +
+                "P.S. You can also call me in another chat. Just type @arteirobot and share artists " +
                 "with your friends!", getChatId());
     }
 
