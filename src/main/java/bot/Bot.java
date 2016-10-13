@@ -28,6 +28,16 @@ public class Bot {
     Model model;
     Boolean countrySearch = false;
     Boolean nameSearch = false;
+    String mGLass = "\\U0001F50D";
+    String man = "\\U0001F471";
+    String usFlag = "\\U0001f1fa\\U0001f1f8";
+    String star = "\\u2b50\\ufe0f";
+    String pallet = "\\U0001f3a8";
+    String showRandomArtistMessage = "Show random artist " + pallet;
+    String searchArtistByNameMessage = "Search artists by name " + mGLass + " " + man;
+    String searchArtistsByCountryMessage = "Search artists by country " + mGLass + " " + usFlag;
+    String rateMeMessage = "Rate me " + star;
+
 
     Bot(){
         model = new Model();
@@ -86,16 +96,22 @@ public class Bot {
                     showKeyboard();
                     setNameSearch(false);
                 }
-                if(message.contentEquals("Show random artist")) {
+                if(isRandomMessage(message)) {
                     showRandomArtist();
                     showKeyboard();
-                } else if(message.contentEquals("Search artists by name")) {
+                } else if(isSearchArtistByNameMessage(message)) {
                     sendMessage("Please type an artist name for me to search for", getChatId());
                     setNameSearch(true);
                 }
-                else if(message.contentEquals("Search artists by country")) {
+                else if(isSearchArtistByCounty(message)) {
                     sendMessage("Please type an artist country for me to search for", getChatId());
                     setCountrySearch(true);
+                }
+                else if(isRateMeMessage(message)){
+                    sendMessage("Thanks for using my services! Please rate me if you've like them! ;)",
+                                getChatId());
+
+                    // ENVIAR O RATE AQUI
                 }
 
             } else {
@@ -108,6 +124,22 @@ public class Bot {
             // Admin notification
             sendMessage(e.getMessage() + "\n" + e.getStackTrace(), "136505761"); // Antigo "-145562622"
         }
+    }
+
+    private boolean isRateMeMessage(String message) {
+        return message.contentEquals(rateMeMessage);
+    }
+
+    private boolean isSearchArtistByCounty(String message) {
+        return message.contentEquals(searchArtistsByCountryMessage);
+    }
+
+    private boolean isSearchArtistByNameMessage(String message) {
+        return message.contentEquals(searchArtistByNameMessage);
+    }
+
+    private boolean isRandomMessage(String message) {
+        return message.contentEquals(showRandomArtistMessage);
     }
 
     private boolean isStartingMessage(String message) {
@@ -203,9 +235,11 @@ public class Bot {
     private void showKeyboard(){
 
         ReplyKeyboardMarkup searchArtistsKeyboard = new ReplyKeyboardMarkup(
-                new String[]{"Search artists by name"},
-                new String[]{"Search artists by country"},
-                new String[]{"Show random artist"}
+                new String[]{searchArtistByNameMessage},
+                new String[]{searchArtistsByCountryMessage},
+                new String[]{showRandomArtistMessage},
+                new String[]{"Rate me " + star}
+
         ).resizeKeyboard(true).oneTimeKeyboard(true);
 
         bot.execute(
