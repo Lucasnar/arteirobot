@@ -28,7 +28,7 @@ public class Bot {
     Model model;
     Boolean countrySearch = false;
     Boolean nameSearch = false;
-    //String mGLass = "\u0001f50d";
+    /*//String mGLass = "\u0001f50d";
     char[] mGLass = Character.toChars(128269);
     String man = "\u0001f471";
     String usFlag = "\u0001f1fa\u0001f1f8";
@@ -38,7 +38,11 @@ public class Bot {
     String searchArtistByNameMessage = "Search artists by name " + mGLass + " " + man;
     String searchArtistsByCountryMessage = "Search artists by country " + mGLass + " " + usFlag;
     String rateMeMessage = "Rate me " + star;
+    */
 
+    String showRandomArtistMessage = "Show random artist";
+    String searchArtistByNameMessage = "Search artists by name" ;
+    String searchArtistsByCountryMessage = "Search artists by country";
 
     Bot(){
         model = new Model();
