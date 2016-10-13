@@ -28,11 +28,12 @@ public class Bot {
     Model model;
     Boolean countrySearch = false;
     Boolean nameSearch = false;
-    String mGLass = "\uf50d";
-    String man = "\uf471";
-    String usFlag = "\uf1fa\uf1f8";
-    String star = "\u2b50";
-    String pallet = "\uf3a8";
+    //String mGLass = "\u0001f50d";
+    char[] mGLass = Character.toChars(128269);
+    String man = "\u0001f471";
+    String usFlag = "\u0001f1fa\u0001f1f8";
+    String star = "\u2b50\ufe0f";
+    String pallet = "\u0001f3a8";
     String showRandomArtistMessage = "Show random artist " + pallet;
     String searchArtistByNameMessage = "Search artists by name " + mGLass + " " + man;
     String searchArtistsByCountryMessage = "Search artists by country " + mGLass + " " + usFlag;
