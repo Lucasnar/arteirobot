@@ -43,6 +43,7 @@ public class Bot {
     String showRandomArtistMessage = "Show random artist";
     String searchArtistByNameMessage = "Search artists by name" ;
     String searchArtistsByCountryMessage = "Search artists by country";
+    String rateMeMessage = "Rate me";
 
     Bot(){
         model = new Model();
@@ -242,8 +243,8 @@ public class Bot {
         ReplyKeyboardMarkup searchArtistsKeyboard = new ReplyKeyboardMarkup(
                 new String[]{searchArtistByNameMessage},
                 new String[]{searchArtistsByCountryMessage},
-                new String[]{showRandomArtistMessage},
-                new String[]{"Rate me " + star}
+                new String[]{showRandomArtistMessage}
+                //new String[]{rateMeMessage}
 
         ).resizeKeyboard(true).oneTimeKeyboard(true);
 
