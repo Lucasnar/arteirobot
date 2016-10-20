@@ -28,7 +28,11 @@ public class Bot {
     Model model;
     Boolean countrySearch = false;
     Boolean nameSearch = false;
-    /*//String mGLass = "\u0001f50d";
+
+    // TODO Wasn't able to include Unicode.
+
+    /*
+    //String mGLass = "\u0001f50d";
     char[] mGLass = Character.toChars(128269);
     String man = "\u0001f471";
     String usFlag = "\u0001f1fa\u0001f1f8";
@@ -114,10 +118,10 @@ public class Bot {
                     setCountrySearch(true);
                 }
                 else if(isRateMeMessage(message)){
-                    sendMessage("Thanks for using my services! Please rate me if you've like them! ;)",
+                    sendMessage("Thanks for using my services! Please rate me if you've liked them! ;)",
                                 getChatId());
 
-                    // ENVIAR O RATE AQUI
+                    // TODO Logic to send the option to rate the bot here.
                 }
 
             } else {
